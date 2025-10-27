@@ -1,0 +1,5 @@
+Hash Table Reflection
+
+I worked through the unfinished portions of the starter code, filling in each section that was marked with a FIXME. The first step was making sure the table actually had buckets to work with, so I wired the constructors to size the backing vector and then wrote the destructor to clear every chained node. From there I added the hash function, insert, print, remove, and search methods, following the rubric direction to use linked-list chaining for collisions. I also updated the menu so searching or removing a bid now prompts the user for an ID, which makes the program feel closer to the sample output.
+
+The trickiest part was keeping the node management straight: when inserting I had to be sure new bids get attached to the proper chain, and when removing I double-checked that the head-of-bucket case promotes the next node correctly. Running the program with the provided CSV after each change helped confirm the logic was working. By the end everything—from loading bids to finding and deleting specific entries—matched what the guidelines describe.

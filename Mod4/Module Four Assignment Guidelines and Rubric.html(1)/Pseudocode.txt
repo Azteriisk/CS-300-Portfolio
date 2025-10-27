@@ -1,0 +1,92 @@
+HashTable Program Pseudocode
+
+Main()
+  if command line arguments provided
+    set csvPath and optional bidKey from arguments
+  else
+    default csvPath to eBid_Monthly_Sales.csv and bidKey to 98223
+
+  create HashTable instance
+  loop until user chooses 9
+    display menu options
+    read user choice
+
+    case 1: Load Bids
+      start timing
+      call loadBids(csvPath, table)
+      display elapsed time
+
+    case 2: Display All Bids
+      table.PrintAll()
+
+    case 3: Find Bid
+      prompt for bid id
+      start timing
+      bid = table.Search(requested id)
+      stop timing
+      if bid exists
+        display bid details
+      else
+        notify user bid not found
+      show elapsed time
+
+    case 4: Remove Bid
+      prompt for bid id
+      table.Remove(requested id)
+
+    case 9: Exit loop
+
+  print "Good bye." and end program
+
+HashTable::HashTable()
+  resize underlying vector to tableSize so buckets exist
+
+HashTable::HashTable(size)
+  store requested size (fallback to default)
+  resize buckets
+
+HashTable::~HashTable()
+  for every bucket
+    walk linked list nodes
+      delete each chained node
+    clear bucket pointer to avoid dangling links
+
+HashTable::hash(key)
+  convert key to unsigned
+  return key modulo tableSize
+
+HashTable::Insert(bid)
+  compute bucket index from bid id
+  if bucket empty
+    drop bid directly into bucket
+  else
+    walk to end of bucket chain
+    append new node containing bid
+
+HashTable::PrintAll()
+  for each bucket
+    skip empty ones
+    iterate chain and print bid details
+
+HashTable::Remove(bidId)
+  compute bucket index
+  if bucket empty, stop
+  if head matches id
+    promote next node (or clear bucket if none)
+  else
+    walk chain keeping previous pointer
+    when match found
+      bypass and delete the node
+
+HashTable::Search(bidId)
+  compute bucket index
+  if bucket empty, return empty bid
+  walk chain
+    if matching id found, return that bid
+  return empty bid when search fails
+
+loadBids(csvPath, table)
+  open CSV parser
+  for each row
+    build Bid struct from columns
+    table.Insert(bid)

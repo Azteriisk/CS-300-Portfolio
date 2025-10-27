@@ -1,0 +1,25 @@
+Menu:
+  1. Load Bids
+  2. Display All Bids
+  3. Selection Sort All Bids
+  4. Quick Sort All Bids
+  9. Exit
+Enter choice: Loading CSV file eBid_Monthly_Sales.csv
+12023 bids read
+time: 36 clock ticks
+time: 0.036 seconds
+Menu:
+  1. Load Bids
+  2. Display All Bids
+  3. Selection Sort All Bids
+  4. Quick Sort All Bids
+  9. Exit
+Enter choice: time: 4 clock ticks
+time: 0.004 seconds
+Menu:
+  1. Load Bids
+  2. Display All Bids
+  3. Selection Sort All Bids
+  4. Quick Sort All Bids
+  9. Exit
+Enter choice: Good bye.

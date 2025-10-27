@@ -1,0 +1,47 @@
+Reflection
+---------
+Finishing the binary search tree makes the console menu feel useful. I tightened up the tree so it starts with a clean root, walks the nodes safely when it shuts down, and reuses the same print helper during each traversal. Keeping the public calls thin while the private helpers handle the real work made the code easier to read and reason about.
+
+Removing bids without making a mess took the most thought. I mapped out the leaf, one-child, and two-child cases, added a small `destroy` helper, and used the right-side successor to swap in data when both children were present. Stepping through a few pretend trees on paper helped me spot pointer mistakes before I tried them in code.
+
+Pseudocode
+---------
+Insert(bid):
+    if root is null, set root to new Node(bid)
+    otherwise call addNode(root, bid)
+
+addNode(node, bid):
+    if bid.id is less than node.bid.id, recurse on node.left or create that child
+    otherwise recurse on node.right or create that child
+
+Search(bidId):
+    start at root
+    while a node exists:
+        if the ids match, return that bid
+        if bidId is less than the current id, go left
+        otherwise go right
+    return an empty Bid
+
+Remove(bidId):
+    set root to removeNode(root, bidId)
+
+removeNode(node, bidId):
+    if node is null, return null
+    if bidId is less than the node id, update node.left with a recursive call
+    else if bidId is greater, update node.right the same way
+    else:
+        if there are no children, delete the node and return null
+        if only the right child exists, delete the node and return the right child
+        if only the left child exists, delete the node and return the left child
+        otherwise find the smallest node in the right subtree, copy its bid into the current node, and recurse to delete that successor
+    return node
+
+Traversals (inOrder, preOrder, postOrder):
+    exit early on null
+    visit the children in the expected order and call displayBid for the current node
+
+Destructor:
+    call destroy(root)
+
+destroy(node):
+    if node exists, recurse left and right and then delete the node
