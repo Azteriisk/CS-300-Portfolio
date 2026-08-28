@@ -1,3 +1,9 @@
+> **Course**: CS 300: Data Structures and Algorithms  
+> **Description**: Data Structures and Algorithms Analysis Portfolio  
+> **Part of**: [CS SWE Degree Path](https://github.com/Azteriisk/CS-SWE-Degree-Path)
+
+---
+
 # CS-300 Data Structures and Algorithms - Portfolio Repository
 
 ## Overview
